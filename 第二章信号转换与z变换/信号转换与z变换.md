@@ -37,4 +37,52 @@ $$Z[f(t)]=Z[f^*(t)]=F(z)=\sum_{k=0}^{\inf}f(kT)z_{-k}$$
 ### (1) $Z[a^k]=\frac{1}{1-az_{-1}}$
 $$Z[a^k]=F(z)=\sum_{k=0}^{\infty}a^kz^{-k}=\sum_{k=0}^{\infty}(az^{-1})^k=\frac{1-(az^{-1})^{\infty}}{1-az^{-1}}=\frac{1}{1-az^{-1}}$$
 ### (2) $Z[a^kf(t)]=f(\frac{z}{a})$
-$$Z[a^kf(t)]=\sum_{k=0}^{\infty}a^kf(t)z^{-k}=\sum_{k=0}^{\infty}f(t)(\frac{z}{a})^{-k}\stackrel{变量代换}{\longrightarrow}F(\frac{z}{a})$$
+$$Z[a^kf(t)]=\sum_{k=0}^{\infty}a^kf(kT)z^{-k}=\sum_{k=0}^{\infty}f(kT)(\frac{z}{a})^{-k}\stackrel{变量代换}{\longrightarrow}F(\frac{z}{a})$$
+### (3) $Z[tf(t)]=-Tz\frac{\mathrm d}{\mathrm dt}F(z)$
+$$F(z)=Z[f(t)]=\sum_{k=0}^{\infty}f(kT)z^{-k}$$
+$$\downarrow 两边求导$$
+$$\frac{\mathrm d}{\mathrm dt}F(z)=\sum_{k=0}^{\infty}-kf(kT)z^{-k-1}$$
+$$\downarrow 两边同乘-Tz$$
+$$-Tz\frac{\mathrm d}{\mathrm dt}F(z)=\sum_{k=0}^{\infty}kTf(kT)z^{-k}=Z[tf(t)]$$
+### (4) $Z[t^2]=\frac{T^2z^{-1}(1+z^{-1})}{(1-z^{-1})^3}$
+$$T^2z(\frac{\mathrm d}{\mathrm dz}Z[1(t)]+z\frac{\mathrm d^2}{\mathrm dz^2}Z[1(t)])=\sum_{k=0}^{\infty}k^2T^2z^{-k}=Z[t^2]$$
+$$\downarrow$$
+$$Z[t^2]=\frac{T^2z^{-1}(1+z^{-1})}{(1-z^{-1})^3}$$
+### (5) $Z[te^{-at}]=\frac{Te^{-aT}z^{-1}}{(1-e^{-aT}z^{-1})^2}$
+$$Z[e^{-at}]=\sum_{k=0}^{\infty}e^{-akT}z^{-k}=\sum_{k=0}^{\infty}(e^{aT}z)^{-k}\stackrel{变量代换}{\longrightarrow}\frac{1}{1-e^{-aT}z^{-1}}$$
+由问题（3）可知
+$$Z[te^{-at}]=\frac{Te^{-aT}z^{-1}}{(1-e^{-aT}z^{-1})^2}$$
+### (6) $Z[a^tf(t)]=F(a^{-T}z)$
+$$Z[a^tf(t)]=\sum_{k=0}^{\infty}f(t)(a^{-T}z)^{-k}\stackrel{变量代换}{\longrightarrow}F(a^{-T}z)$$
+## 2.10 Z变换的线性定理
+$$Z[f_1(t)]=F_1(z), Z[f_2(t)]=F_2(z)$$
+$$\downarrow f(t)=af_1(t)\pm bf_2(t)$$
+$$F(z)=aF_1(z)\pm bF_2(z)$$
+证明：
+$$F(z)=\sum_{k=0}^{\infty}[af_1(kT)\pm bf_2(kT)]z^{-k}=aF_1(z)\pm bF_2(z)$$
+## 2.11 Z变换的滞后定理
+如果$f(t)=0, t\le 0$，则：
+$$Z[f(t-nT)]=z^{-n}F(z)$$
+$F(z)$ 经过一个 $z^{-n}$ 的纯滞后环节，相当于其时间特性向后移动 $n$ 步。通常在起始点之前，$f(t)=0$ 都可以成立（线性时不变要求）。
+证明：
+$$Z[f(t-nT)]=\sum_{k=0}^{\infty}f(kT-nT)z^{-k}=z{-n}\sum_{k=0}^{\infty}f(kT-nT)z^{-(k-n)}\stackrel{变量代换k-n=m}{\longrightarrow} z^{-n}\sum_{m=-n}^{\infty}f(mT)z^{-m}$$
+$$\downarrow$$
+$$Z[f(t-nT)]=z^{-n}\sum_{m=0}^{\infty}f(mT)z^{-m}=z^{-n}F(z)$$
+## 2.12 Z变换的超前定理
+$$Z[f(t+nT)]=z^{n}F(z)-z^n\sum_{j=0}^{n-1}f(jT)z^{-1}$$
+证明：
+$$Z[f(t+nT)]=\sum_{k=0}^{\infty}f(kT+nT)z^{-k}=z^n\sum_{k=0}^{\infty}f(kT+nT)z^{-(k+n)}$$
+$$\downarrow 变量代换k+n=r$$
+$$Z[f(t+nT)]=z^{n}\sum_{r=n}^{\infty}f(rT)z^{-r}=z^n[\sum_{r=0}^{\infty}f(rT)z^{-r}-\sum_{r=0}^{n-1}f(rT)z^{-r}]$$
+$$=z^n[F(z)-\sum_{j=0}^{n-1}f(jT)z^{-j}]$$
+## 2.13 Z变换初值定理
+$$f(0)=\lim_{z\rightarrow\infty}F(z)$$
+利用初值定理检查 $z$ 变换的结果非常方便。
+证明：
+$$F(z)=\sum_{k=0}^{\infty}f(kT)z^{-k}=f(0T)+f(1T)z^{-1}+f(2T)z^{-2}+\cdots$$
+$$\downarrow 两边同取 z\rightarrow \infty$$
+$$\lim_{z\rightarrow \infty}F(z)=f(0)=\lim_{k\rightarrow 0}f(kT)$$
+## 2.14 Z变换终值定理
+如果 $f(t)$ 的 $z$ 变换为 $F(z)$ ，而 $1-z^{-1}$ 在 $F(z)$ 在 $z$ 平面以原点为圆心的单位圆上或圆外，没有极点，则
+$$\lim_{t\rightarrow \infty}f(t)=\lim_{k\rightarrow \infty}f(kT)=lim_{z\rightarrow 1}F(z)=\lim_{z\rightarrow 1}\frac{(z-1)}{z}F(z)$$
+证明：
